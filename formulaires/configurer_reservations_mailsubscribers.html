@@ -1,4 +1,12 @@
+#CONFIG{reservations_mailsubscribers}
+
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+    #SET{listes,#ARRAY}
+    <BOUCLE_listes(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
+        [(#VALEUR{status}|=={open}|oui)
+            [(#SET{listes,#GET{listes}|array_merge{#ARRAY{#VALEUR{id_bak},#VALEUR{titre}}}})]
+        ]
+    </BOUCLE_listes>
 
 	<h3 class="titrem"><:reservations_mailsubscribers:cfg_titre_parametrages:></h3>
 
@@ -10,9 +18,9 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<ul>
-			[(#SAISIE{input, exemple,
-				label=<:reservations_mailsubscribers:cfg_exemple:>,
-				explication=<:reservations_mailsubscribers:cfg_exemple_explication:>})]
+			[(#SAISIE{checkbox, listes,
+				label=<:reservations_mailsubscribers:label_selection_listes:>,
+				datas=#GET{listes}})]
 		</ul>
 
 		<input type="hidden" name="_meta_casier" value="reservations_mailsubscribers" />

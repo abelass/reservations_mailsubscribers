@@ -19,6 +19,23 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 
 
+function reservations_mailsubscribers_formulaire_traiter($flux){
+	// si creation d'un nouvel article lui attribuer la licence par defaut de la config
+	if ($flux['args']['form'] == 'reservation') {
+		include_spip('inc/config');
+		$email=_request('email');
+		$config=lire_config('reservations_mailsubscribers',array());
+		$listes=isset($config['listes'])?$config['listes']:array();
+		$options = array('lang'=>$GLOBALS['spip_lang'],'nom'=>_request('nom'));
+		
+		$options['listes'] = $listes;
+				
 
+		$newsletter_subscribe = charger_fonction("subscribe","newsletter");
+		$newsletter_subscribe($email,$options);		
+		spip_log($newsletter_subscribe,'teste');
+	}
+	return $flux;
+}
 
 ?>
