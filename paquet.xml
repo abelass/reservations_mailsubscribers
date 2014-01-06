@@ -18,25 +18,11 @@
 	<auteur lien='http://websimple.be/fr/'>Rainer</auteur>
 
 	<licence>GNU/GPL</licence>
-
-	<!--
-		Exemple de commandes
-		* dependances
-		<necessite nom="saisies" compatibilite="[1.21.0;]" />
-		<utilise nom="saisies" compatibilite="[1.21.0;]" />
-		<lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
-		* pipelines
-		<pipeline nom="autoriser" inclure="reservations_mailsubscribers_autorisations.php" />
-		
-		* declarer un pipeline 
-		<pipeline nom="mon_pipeline" action="" />
-		* parents de menus de SPIP :
-				menu_accueil (A eviter), menu_edition, menu_publication,
-				menu_activite, menu_squelette, menu_administration, menu_configuration 
-		<menu nom="reservations_mailsubscribers" titre="reservations_mailsubscribers:reservations_mailsubscribers_titre" parent="menu_edition"  icone="images/reservations_mailsubscribers-16.png" />
-		* parents d'onglets... configuration, plugins, statistiques, ... 
-		<onglet nom="reservations_mailsubscribers" titre="reservations_mailsubscribers:reservations_mailsubscribers_titre" parent="configuration" icone="images/reservations_mailsubscribers-24.png" />
-	-->
+	
+	<necessite nom="saisies" compatibilite="[1.21.0;]" />	
+	<necessite nom="mailsubscribers" compatibilite="[1.4.2;]" />
+	<necessite nom="reservation_evenement" compatibilite="[1.6.7;]" />	
+	
 
 	<pipeline nom="formulaire_traiter" inclure="reservations_mailsubscribers_pipelines.php" />
 
