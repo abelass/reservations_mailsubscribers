@@ -5,8 +5,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	// R
-	'reservations_mailsubscribers_titre' => 'Réservation 2 Mailsubscribers',
+	//I
+	'inscription_newsletters'=>'Je veux m\'inscrire aux newsletters',
 
 	// C
 	'cfg_exemple' => 'Exemple',
@@ -16,7 +16,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	//L
 	'label_checkbox'=>'champ visible (checkbox)',		
 	'label_hidden'=>'champ caché (hidden)',	
+	'label_oui'=>'oui',		
 	'label_selection_listes'=>'Choissisez les listes qui doivent être inclusn dans le formulaire de résérvation d\'événement',
+
+	// R
+	'reservations_mailsubscribers_titre' => 'Réservation 2 Mailsubscribers',
 	
 	// T
 	'titre_page_configurer_reservations_mailsubscribers' => 'Configuration Réservation 2 Mailsubscribers',
