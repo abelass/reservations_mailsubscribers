@@ -14,8 +14,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titre_parametrages' => 'Paramétrages',
 	
 	//L
-	'label_selection_listes'=>'Choissisez les listes qui doivent être actualisé lor d\'une réservation',
-
+	'label_checkbox'=>'champ visible (checkbox)',		
+	'label_hidden'=>'champ caché (hidden)',	
+	'label_selection_listes'=>'Choissisez les listes qui doivent être inclusn dans le formulaire de résérvation d\'événement',
+	
 	// T
 	'titre_page_configurer_reservations_mailsubscribers' => 'Configuration Réservation 2 Mailsubscribers',
 	

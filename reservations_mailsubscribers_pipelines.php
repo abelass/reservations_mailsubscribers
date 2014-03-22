@@ -37,5 +37,8 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 	}
 	return $flux;
 }
-
+function reservations_mailsubscribers_header_prive($flux){
+	$flux .= '<link rel="stylesheet" href="' . _DIR_PLUGIN_RESERVATIONS_MAILSUBSCRIBERS  .'css/styles_admin.css" type="text/css" media="all" />';
+	return $flux;
+}
 ?>

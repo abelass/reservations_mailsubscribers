@@ -16,11 +16,22 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<ul>
-			[(#SAISIE{checkbox, listes,
-				label=<:reservations_mailsubscribers:label_selection_listes:>,
-				datas=#GET{listes}})]
+		    <li class="fieldset">
+		        <legend><:reservations_mailsubscribers:label_selection_listes:></legend>
+		        <ul>
+    		    <BOUCLE_listes_afficher(DATA){source tableau, #GET{listes}}>
+    		    
+    				[(#SAISIE{checkbox, listes_checkbox,
+    				label=#VALEUR,
+    				datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_checkbox:>}})]
+    				[(#SAISIE{checkbox, listes_hidden,
+    				label='',
+    				datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_hidden:>}})]					    
+    		    </BOUCLE_listes_afficher>
+		      </ul>
+		    </li>
 		</ul>
-
+        
 		<input type="hidden" name="_meta_casier" value="reservations_mailsubscribers" />
 		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
 	</div>
