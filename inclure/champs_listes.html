@@ -4,7 +4,7 @@
         <li class="listes">  
             <ul>
             <BOUCLE_champs(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
-                 [(#ID_BAK|in_array{#CONFIG{reservations_mailsubscribers/listes_checkbox}}|oui)
+                 [(#ID_BAK|in_array{#CONFIG{reservations_mailsubscribers/listes_checkbox,#ARRAY}}|oui)
                    [(#SAISIE{checkbox, listes,label='',datas=#ARRAY{#ID_BAK,#TITRE}})]
                    ] 
             </BOUCLE_champs>
