@@ -63,7 +63,6 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 
 		$newsletter_subscribe = charger_fonction("subscribe","newsletter");
 		$newsletter_subscribe($email,$options);		
-		spip_log($newsletter_subscribe,'teste');
 	}
 	return $flux;
 }
