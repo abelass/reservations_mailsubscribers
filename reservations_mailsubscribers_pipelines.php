@@ -50,11 +50,12 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 	if ($flux['args']['form'] == 'reservation') {
 		$email=_request('email');
 		
-		$listes=_request_listes();
-		if($liste_hidden=_request('_listes_hidden')){
+		$listes=_request('listes')?_request('listes'):array();
+		
+		if($liste_hidden=_request('listes_hidden')){
 			$liste_hidden=explode(',',$liste_hidden);
 			$listes=array_merge($listes,$liste_hidden);
-		}
+			}
 		$options = array('lang'=>$GLOBALS['spip_lang'],'nom'=>_request('nom'));
 		
 		$options['listes'] = $listes;
