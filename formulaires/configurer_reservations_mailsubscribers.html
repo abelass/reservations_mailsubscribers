@@ -1,3 +1,5 @@
+#SET{langues_dispos,#CONFIG{langues_multilingue}|explode{','}}
+
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
     #SET{listes,#ARRAY}
     <BOUCLE_listes(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
@@ -20,13 +22,20 @@
 		        <legend><:reservations_mailsubscribers:label_selection_listes:></legend>
 		        <ul class="listes">
     		    <BOUCLE_listes_afficher(DATA){source tableau, #GET{listes}}>
-    		    
-    				[(#SAISIE{checkbox, listes_checkbox,
+    				[(#SAISIE{checkbox, listes_visibles,
     				label=#VALEUR,
-    				datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_checkbox:>}})]
-    				[(#SAISIE{checkbox, listes_hidden,
+    				class=right,
+    				datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_visible:>}})]
+    				
+    				[(#SAISIE{checkbox, listes_caches,
     				label='',
-    				datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_hidden:>}})]					    
+    				class=right,
+    				datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_cache:>}})]
+     				[(#SAISIE{selection,#CLE|concat{_lang},
+    				label=<:reservations_mailsubscribers:label_langue:>,
+    				datas=[(#GET{langues_dispos}|traduire_tableau)],
+    				class=right,
+    				option_intro=--})]   									    
     		    </BOUCLE_listes_afficher>
 		      </ul>
 		    </li>

@@ -70,7 +70,6 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 function reservations_mailsubscribers_recuperer_fond($flux){
 	if ($flux['args']['fond'] == 'formulaires/reservation'){
 		$champs = recuperer_fond('inclure/champs_listes',array('listes'=>_request(listes)));
-
 		$flux['data']['texte'] = str_replace('<!--extra-->', '<!--extra-->' .$champs, $flux['data']['texte']);
 	}
 	return $flux;

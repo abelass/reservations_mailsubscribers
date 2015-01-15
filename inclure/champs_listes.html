@@ -1,27 +1,12 @@
-<fieldset>
-    <ul>
-        [(#SAISIE{checkbox, newsletter,label=<:reservations_mailsubscribers:inscription_newsletters:>,datas=#ARRAY{oui,<:reservations_mailsubscribers:label_oui:>}})]  
-        <li class="listes">  
-            <ul>
-            <BOUCLE_champs(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
-                 [(#ID_BAK|in_array{#CONFIG{reservations_mailsubscribers/listes_checkbox}}|oui)
-                   [(#SAISIE{checkbox, listes,label='',datas=#ARRAY{#ID_BAK,#TITRE}})]
-                   ] 
-            </BOUCLE_champs>
-            </ul>
-        
-        </li>
-    </ul>
-</fieldset>
-
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        if (!$('input[name="newsletter[]"]').is(':checked')) {
-            $('.listes').hide(); 
-            } 
-        });
-    $('input[name="newsletter[]"]').click(function() {
-        $('.listes').slideToggle('slow', function() {
-        });
-});   
-</script>
+#SET{mailinglists_visibles,#VAL|mailinglists_visibles}
+[(#GET{mailinglists_visibles}|count|>{0}|oui)
+ <ul>
+ 	<li>
+		<fieldset>
+			<legend><:mailsubscriber:subscribe_titre_email:></legend>
+	        <ul>
+	        	[(#SAISIE{checkbox, listes,label=<:reservations_mailsubscribers:inscription_newsletters:>,datas=#GET{mailinglists_visibles}})]
+	        </ul>
+		</fieldset>
+	</li>
+</ul>]

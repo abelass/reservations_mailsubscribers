@@ -14,9 +14,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titre_parametrages' => 'Paramétrages',
 	
 	//L
-	'label_checkbox'=>'champ visible (checkbox)',		
-	'label_hidden'=>'champ caché (hidden)',	
-	'label_oui'=>'oui',		
+	'label_visible'=>'champ visible (checkbox)',		
+	'label_cache'=>'champ caché (hidden)',	
+	'label_oui'=>'oui',	
+	'label_langue'=>'Langue liste',			
 	'label_selection_listes'=>'Choissisez les listes qui doivent être inclusn dans le formulaire de résérvation d\'événement',
 
 	// R

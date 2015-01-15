@@ -1,2 +1,7 @@
-.formulaire_spip .listes li.editer {width:33%;float:left}
-.formulaire_spip .listes li.editer_listes_hidden {clear:none;padding-left:0}
+.formulaire_spip .listes li.editer {width:22%;float:left;}
+
+.formulaire_spip .listes li.editer_listes_caches,.formulaire_spip .listes li[class*="lang"]{clear:none;padding-left:0}
+
+.formulaire_spip .listes li[class*="lang"] label{margin-left:0}
+
+.formulaire_spip .listes lili[class*="lang"] select{float:left}
