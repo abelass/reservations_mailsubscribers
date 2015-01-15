@@ -23,22 +23,26 @@ function reservations_mailsubscribers_formulaire_charger($flux){
 	if ($flux['args']['form'] == 'reservation') {
 		include_spip('inc/config');
 		$config=lire_config('reservations_mailsubscribers',array());
-		
 		//Les valeurs des listes visibles
-		if(isset($config['listes_checkbox'])){
-			foreach($config['listes_checkbox'] AS $liste){
+		if(isset($config['listes_visibles'])){
+			foreach($config['listes_visibles'] AS $liste){
 				$flux['data'][$liste] = '';
 			}
 		}
 		
 		//Les hidden listes
-		if(isset($config['listes_hidden'])){
-			$listes_hidden=array();
-			foreach($config['listes_hidden'] AS $liste){
-				$listes_hidden[]=$liste;
+		$lang=$GLOBALS['spip_lang'];
+		if(isset($config['listes_caches'])){
+			$listes_caches=array();
+			foreach($config['listes_caches'] AS $liste){
+				
+				if($config[$liste.'_lang']=='' OR $config[$liste.'_lang']==$lang){
+					$listes_caches[]=$liste;
+				}
+				
 			}
-			$listes_hidden=implode(',',$listes_hidden);
-			$flux['data']['_hidden'] .= "<input type='hidden' name='listes_hidden' value='$listes_hidden' />";
+			$listes_caches=implode(',',$listes_caches);
+			$flux['data']['_hidden'] .= "<input type='hidden' name='listes_caches' value='$listes_caches' />";
 		}		
 
 	}
