@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_cache'=>'champ caché (hidden)',	
 	'label_oui'=>'oui',	
 	'label_langue'=>'Langue liste',			
-	'label_selection_listes'=>'Choissisez les listes qui doivent être inclusn dans le formulaire de résérvation d\'événement',
+	'label_selection_listes'=>'Choissisez les listes qui doivent être inclus dans le formulaire de résérvation d\'événement',
 
 	// R
 	'reservations_mailsubscribers_titre' => 'Réservation 2 Mailsubscribers',
