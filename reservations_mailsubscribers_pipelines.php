@@ -12,38 +12,58 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 	
 
-/*
- * Un fichier de pipelines permet de regrouper
- * les fonctions de branchement de votre plugin
- * sur des pipelines existants.
- */
+//Génère un tableau avec les mailinlists à afficher
+function mailinglists_visibles(){
+	include_spip('inc/config');
+	$config_listes_checkbox=lire_config('reservations_mailsubscribers/listes_visibles');
+	
+	foreach(lire_config('mailsubscribers/lists',array()) AS $data){
+		if(in_array($data['id_bak'],$config_listes_checkbox))
+		$mailinglists_visibles[$data['id_bak']]=$data['titre'];
+	}
+	
+	return $mailinglists_visibles;
+}
 
 function reservations_mailsubscribers_formulaire_charger($flux){
 	// si creation d'un nouvel article lui attribuer la licence par defaut de la config
 	if ($flux['args']['form'] == 'reservation') {
 		include_spip('inc/config');
 		$config=lire_config('reservations_mailsubscribers',array());
-		//Les valeurs des listes visibles
-		if(isset($config['listes_visibles'])){
-			foreach($config['listes_visibles'] AS $liste){
-				$flux['data'][$liste] = '';
-			}
-		}
-		
-		//Les hidden listes
+		$config_listes_visibles=isset($config['listes_visibles'])?$config['listes_visibles']:array();	
+		$config_listes_caches=isset($config['listes_caches'])?$config['listes_caches']:array();	
 		$lang=$GLOBALS['spip_lang'];
-		if(isset($config['listes_caches'])){
-			$listes_caches=array();
-			foreach($config['listes_caches'] AS $liste){
-				
-				if($config[$liste.'_lang']=='' OR $config[$liste.'_lang']==$lang){
-					$listes_caches[]=$liste;
-				}
-				
+		
+		$flux['data']['listes'] = "";	
+		
+		//Les liste visibles
+		foreach(lire_config('mailsubscribers/lists',array()) AS $data){		
+			if(
+				(in_array($data['id_bak'],$config_listes_visibles)) AND
+				($config[$data['id_bak'].'_lang']=='' OR $config[$data['id_bak'].'_lang']==$lang)){
+				$flux['data']['mailinglists_visibles'][$data['id_bak']]=$data['titre'];
 			}
-			$listes_caches=implode(',',$listes_caches);
-			$flux['data']['_hidden'] .= "<input type='hidden' name='listes_caches' value='$listes_caches' />";
-		}		
+			
+		}
+			
+
+		//Les hidden listes
+		
+	
+		$listes_caches=array();
+		foreach($config_listes_caches AS $liste){
+			
+			if($config[$liste.'_lang']=='' OR $config[$liste.'_lang']==$lang){
+				$listes_caches[]=$liste;
+			}
+			
+		}
+		$listes_caches=implode(',',$listes_caches);
+		
+		
+		
+		$flux['data']['_hidden'] .= "<input type='hidden' name='listes_caches' value='$listes_caches' />";
+				
 
 	}
 	return $flux;
@@ -73,7 +93,9 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 
 function reservations_mailsubscribers_recuperer_fond($flux){
 	if ($flux['args']['fond'] == 'formulaires/reservation'){
-		$champs = recuperer_fond('inclure/champs_listes',array('listes'=>_request(listes)));
+
+		$contexte=$flux['args']['contexte'];
+		$champs = recuperer_fond('inclure/champs_listes',$contexte);
 		$flux['data']['texte'] = str_replace('<!--extra-->', '<!--extra-->' .$champs, $flux['data']['texte']);
 	}
 	return $flux;

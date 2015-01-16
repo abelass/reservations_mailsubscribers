@@ -1,11 +1,10 @@
-#SET{mailinglists_visibles,#VAL|mailinglists_visibles}
-[(#GET{mailinglists_visibles}|count|>{0}|oui)
+[(#ENV{mailinglists_visibles}|count|>{0}|oui)
  <ul>
  	<li>
 		<fieldset>
 			<legend><:mailsubscriber:subscribe_titre_email:></legend>
 	        <ul>
-	        	[(#SAISIE{checkbox, listes,label=<:reservations_mailsubscribers:inscription_newsletters:>,datas=#GET{mailinglists_visibles}})]
+	        	[(#SAISIE{checkbox, listes,label=<:reservations_mailsubscribers:inscription_newsletters:>,datas=#ENV{mailinglists_visibles}})]
 	        </ul>
 		</fieldset>
 	</li>
