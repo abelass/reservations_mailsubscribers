@@ -60,7 +60,7 @@ function reservations_mailsubscribers_formulaire_charger($flux){
 		}
 		$listes_caches=implode(',',$listes_caches);
 		
-		
+		$flux['data']['listes_caches']=$listes_caches;
 		
 		$flux['data']['_hidden'] .= "<input type='hidden' name='listes_caches' value='$listes_caches' />";
 				
@@ -76,9 +76,9 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 		
 		$listes=_request('listes')?_request('listes'):array();
 		
-		if($liste_hidden=_request('listes_hidden')){
-			$liste_hidden=explode(',',$liste_hidden);
-			$listes=array_merge($listes,$liste_hidden);
+		if($liste_hidden=_request('listes_caches')){
+			$listes_caches=explode(',',$listes_caches);
+			$listes=array_merge($listes,$listes_caches);
 			}
 		$options = array('lang'=>$GLOBALS['spip_lang'],'nom'=>_request('nom'));
 		
