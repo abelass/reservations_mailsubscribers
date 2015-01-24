@@ -76,10 +76,12 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 		
 		$listes=_request('listes')?_request('listes'):array();
 		
-		if($liste_hidden=_request('listes_caches')){
+		
+		if($listes_caches=_request('listes_caches')){
 			$listes_caches=explode(',',$listes_caches);
 			$listes=array_merge($listes,$listes_caches);
 			}
+		echo(serialize($listes));
 		$options = array('lang'=>$GLOBALS['spip_lang'],'nom'=>_request('nom'));
 		
 		$options['listes'] = $listes;
