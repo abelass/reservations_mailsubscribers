@@ -81,7 +81,6 @@ function reservations_mailsubscribers_formulaire_traiter($flux){
 			$listes_caches=explode(',',$listes_caches);
 			$listes=array_merge($listes,$listes_caches);
 			}
-		echo(serialize($listes));
 		$options = array('lang'=>$GLOBALS['spip_lang'],'nom'=>_request('nom'));
 		
 		$options['listes'] = $listes;
