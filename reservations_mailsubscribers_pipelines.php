@@ -70,24 +70,30 @@ function reservations_mailsubscribers_formulaire_charger($flux){
 } 
  
 function reservations_mailsubscribers_formulaire_traiter($flux){
-	// si creation d'un nouvel article lui attribuer la licence par defaut de la config
+	// Inscription aux mailinglistes lors d'une réservation
 	if ($flux['args']['form'] == 'reservation') {
 		$email=_request('email');
 		
 		$listes=_request('listes')?_request('listes'):array();
 		
-		
-		if($listes_caches=_request('listes_caches')){
+		//Les liste cachés ne sontpas pris en compte si l'abonné est désinscrit ou à la poubelle
+		if(!$id_mailsubscriber=sql_getfetsel('id_mailsubscriber','spip_mailsubscribers','email='.sql_quote($email).' AND statut IN ("refuse","poubelle")') OR count($listes)>0){
+			if($listes_caches=_request('listes_caches')){
 			$listes_caches=explode(',',$listes_caches);
 			$listes=array_merge($listes,$listes_caches);
 			}
-		$options = array('lang'=>$GLOBALS['spip_lang'],'nom'=>_request('nom'));
+		}
 		
-		$options['listes'] = $listes;
-				
-
-		$newsletter_subscribe = charger_fonction("subscribe","newsletter");
-		$newsletter_subscribe($email,$options);		
+		//On inscrit si il y a des listes à inscrire		
+		if(count($listes)>0){		
+			$options = array(
+				'lang'=>$GLOBALS['spip_lang'],
+				'nom'=>_request('nom'),
+				'listes'=>$listes);	
+			$newsletter_subscribe = charger_fonction("subscribe","newsletter");
+			$newsletter_subscribe($email,$options);	
+		}
+			
 	}
 	return $flux;
 }
