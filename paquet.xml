@@ -10,7 +10,6 @@
 
 	<nom>Réservation 2 Mailsubscribers</nom>
 
-	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
 	<auteur lien='http://websimple.be/fr/'>Rainer</auteur>
 
 	<licence>GNU/GPL</licence>
