@@ -9,15 +9,14 @@
  * @package    SPIP\Reservations_mailsubscribers\Fonctions
  */
 
-if (!defined('_ECRIRE_INC_VERSION')) return;
-	
+if (!defined('_ECRIRE_INC_VERSION'))
+  return;
 
+function traduire_tableau($l) {
+  $langues = array();
+  foreach ($l AS $lang) {
+    $langues[$lang] = traduire_nom_langue($lang);
+  };
 
-function traduire_tableau($l){
-	$langues=array();
-	foreach($l AS $lang){
-		$langues[$lang]=traduire_nom_langue($lang);
-	};
-	
-	return $langues;
+  return $langues;
 }
