@@ -12,10 +12,10 @@
 if (!defined('_ECRIRE_INC_VERSION'))
   return;
 
-//Génère un tableau avec les mailinlists à afficher
+//Génère un tableau avec les mailinglists à afficher
 function mailinglists_visibles() {
   include_spip('inc/config');
-  $config_listes_checkbox = lire_config('reservations_mailsubscribers/listes_visibles');
+  $config_listes_checkbox = lire_config('reservations_mailsubscribers');
 
   foreach (lire_config('mailsubscribers/lists',array()) AS $data) {
     if (in_array($data['id_bak'], $config_listes_checkbox))
