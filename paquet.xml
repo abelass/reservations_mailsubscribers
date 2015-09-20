@@ -1,27 +1,24 @@
 <paquet
-	prefix="reservations_mailsubscribers"
-	categorie="communication"
-	version="1.2.4"
-	etat="test"
-	compatibilite="[3.0.17;3.1.*]"
-	logo="prive/themes/spip/images/reservations_mailsubscribers-64.png"
-	documentation=""
+  prefix="reservations_mailsubscribers"
+  categorie="communication"
+  version="1.2.4"
+  etat="test"
+  compatibilite="[3.0.17;3.1.*]"
+  logo="prive/themes/spip/images/reservations_mailsubscribers-64.png"
+  documentation=""
 >
 
-	<nom>Réservation 2 Mailsubscribers</nom>
-
-	<auteur lien='http://websimple.be/'>Rainer</auteur>
-
-	<licence>GNU/GPL</licence>
-	
-	<necessite nom="saisies" compatibilite="[1.21.0;]" />	
-	<necessite nom="mailsubscribers" compatibilite="[1.4.2;]" />
-	<necessite nom="reservation_evenement" compatibilite="[1.6.7;]" />	
-	
-
-	<pipeline nom="formulaire_charger" inclure="reservations_mailsubscribers_pipelines.php" />
-	<pipeline nom="formulaire_traiter" inclure="reservations_mailsubscribers_pipelines.php" />	
-	<pipeline nom="header_prive" inclure="reservations_mailsubscribers_pipelines.php" />
-	<pipeline nom="recuperer_fond" inclure="reservations_mailsubscribers_pipelines.php" />	
+  <nom>Réservation 2 Mailsubscribers</nom>
+  <auteur lien='http://websimple.be/'>Rainer</auteur>
+  <licence>GNU/GPL</licence>
+  
+  <necessite nom="saisies" compatibilite="[1.21.0;]" />
+  <necessite nom="mailsubscribers" compatibilite="[1.4.2;]" />
+  <necessite nom="reservation_evenement" compatibilite="[1.6.7;]" />
+  
+  <pipeline nom="formulaire_charger" inclure="reservations_mailsubscribers_pipelines.php" />
+  <pipeline nom="formulaire_traiter" inclure="reservations_mailsubscribers_pipelines.php" />
+  <pipeline nom="header_prive" inclure="reservations_mailsubscribers_pipelines.php" />
+  <pipeline nom="recuperer_fond" inclure="reservations_mailsubscribers_pipelines.php" />
 
 </paquet>
