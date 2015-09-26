@@ -25,7 +25,7 @@ function inc_inscription_mailinglinglistes_dist($set=array()) {
       'listes' => $listes
     );
     $newsletter_subscribe = charger_fonction("subscribe", "newsletter");
-    $newsletter_subscribe($set['email'], $options);
+    $newsletter_subscribe($email, $options);
   }
   return;
 }

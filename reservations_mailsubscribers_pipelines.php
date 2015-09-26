@@ -38,8 +38,8 @@ function reservations_mailsubscribers_formulaire_charger($flux) {
 
     //Les liste visibles
     foreach (lire_config('mailsubscribers/lists',array()) AS $data) {
-      if ((in_array($data['id_bak'], $config_listes_visibles)) AND ($config[$data['id_bak'] . '_lang'] == '' OR $config[$data['id_bak'] . '_lang'] == $lang)) {
-        $flux['data']['mailinglists_visibles'][$data['id_bak']] = $data['titre'];
+      if ((in_array($data['id'], $config_listes_visibles)) AND ($config[$data['id'] . '_lang'] == '' OR $config[$data['id'] . '_lang'] == $lang)) {
+        $flux['data']['mailinglists_visibles'][$data['id']] = $data['titre'];
       }
 
     }
@@ -67,17 +67,14 @@ function reservations_mailsubscribers_formulaire_charger($flux) {
 function reservations_mailsubscribers_formulaire_traiter($flux) {
   // Inscription aux mailinglistes lors d'une réservation
   if ($flux['args']['form'] == 'reservation') {
-    $email = _request('email');
-
     $inscription = charger_fonction('inscription_mailinglinglistes', 'inc');
-    $inscription($email);
+    $inscription();
   }
   return $flux;
 }
 
 function reservations_mailsubscribers_recuperer_fond($flux) {
   if ($flux['args']['fond'] == 'formulaires/reservation') {
-
     $contexte = $flux['args']['contexte'];
     $champs = recuperer_fond('inclure/champs_listes', $contexte);
     $flux['data']['texte'] = str_replace('<!--extra-->', '<!--extra-->' . $champs, $flux['data']['texte']);
