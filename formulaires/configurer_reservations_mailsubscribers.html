@@ -3,7 +3,7 @@
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
     #SET{listes,#ARRAY}
     <BOUCLE_listes(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
-      [(#SET{listes,#GET{listes}|array_merge{#ARRAY{#VALEUR{id_bak},#VALEUR{titre}}}})]
+      [(#SET{listes,#GET{listes}|array_merge{#ARRAY{#ID,#TITRE}}})]
     </BOUCLE_listes>
 
   <h3 class="titrem"><:reservations_mailsubscribers:cfg_titre_parametrages:></h3>
@@ -14,7 +14,6 @@
   <form method="post" action="#ENV{action}">
   <div>
   #ACTION_FORMULAIRE{#ENV{action}}
-  
   <ul>
       <li class="fieldset">
           <legend><:reservations_mailsubscribers:label_selection_listes:></legend>
