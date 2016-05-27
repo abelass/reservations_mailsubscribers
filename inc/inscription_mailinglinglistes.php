@@ -21,7 +21,7 @@ function inc_inscription_mailinglinglistes_dist($set=array()) {
   if (count($listes) > 0) {
     $options = array(
       'lang' => $GLOBALS['spip_lang'],
-      'nom' => $set['email'],
+      'nom' => $email,
       'listes' => $listes
     );
     $newsletter_subscribe = charger_fonction("subscribe", "newsletter");
