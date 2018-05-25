@@ -3,7 +3,7 @@
  * Utilisations de pipelines par Réservation 2 Mailsubscribers
  *
  * @plugin     Réservation 2 Mailsubscribers
- * @copyright  2014
+ * @copyright  2014 - 2018
  * @author     Rainer
  * @licence    GNU/GPL
  * @package    SPIP\Reservations_mailsubscribers\Pipelines
