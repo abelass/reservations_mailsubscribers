@@ -1,11 +1,10 @@
 #SET{langues_dispos,#CONFIG{langues_multilingue}|explode{','}}
 
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
-		#SET{listes,#ARRAY}
-		<BOUCLE_listes(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
-
-			[(#SET{listes,#GET{listes}|array_merge{#ARRAY{#ID,#ARRAY{titre,#TITRE,statut,#STATUS}}}})]
-		</BOUCLE_listes>
+	#SET{listes,#ARRAY}
+	<BOUCLE_listes(DATA){source tableau,#CONFIG{mailsubscribers/lists}}>
+		[(#SET{listes,#GET{listes}|array_merge{#ARRAY{#ID,#ARRAY{titre,#TITRE,statut,#STATUS}}}})]
+	</BOUCLE_listes>
 
 	<h3 class="titrem"><:reservations_mailsubscribers:cfg_titre_parametrages:></h3>
 
@@ -13,34 +12,37 @@
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
 	<form method="post" action="#ENV{action}">
-	<div>
-	#ACTION_FORMULAIRE{#ENV{action}}
-	<ul>
-			<li class="fieldset">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<div class="editer-groupe">
+				<fieldset>
 					<legend><:reservations_mailsubscribers:label_selection_listes:></legend>
-					<ul class="listes">
-					<BOUCLE_listes_afficher(DATA){source tableau, #GET{listes}} {!par statut}>
-						[(#SAISIE{checkbox, listes_visibles,
-						label=#TITRE - #STATUT,
-						class=right,
-						datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_visible:>}})]
+					<div class="editer-groupe">
+						<BOUCLE_listes_afficher(DATA){source tableau, #GET{listes}} {!par statut}>
+							[(#SAISIE{checkbox, listes_visibles,
+								label=#TITRE - #STATUT,
+								class=right,
+								datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_visible:>}})]
 
-						[(#SAISIE{checkbox, listes_caches,
-						label='',
-						class=right,
-						datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_cache:>}})]
-						[(#SAISIE{selection,#CLE|concat{_lang},
-						label=<:reservations_mailsubscribers:label_langue:>,
-						datas=[(#GET{langues_dispos}|traduire_tableau)],
-						class=right,
-						option_intro=--})]
-					</BOUCLE_listes_afficher>
-				</ul>
-			</li>
-	</ul>
+							[(#SAISIE{checkbox, listes_caches,
+								label='',
+								class=right,
+								datas=#ARRAY{#CLE,<:reservations_mailsubscribers:label_cache:>}})]
+							[(#SAISIE{selection,#CLE|concat{_lang},
+								label=<:reservations_mailsubscribers:label_langue:>,
+								datas=[(#GET{langues_dispos}|traduire_tableau)],
+								class=right,
+								option_intro=--})]
+						</BOUCLE_listes_afficher>
+					</div>
+				</fieldset>
+			</div>
 
-	<input type="hidden" name="_meta_casier" value="reservations_mailsubscribers" />
-	<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
-	</div>
+			<input type="hidden" name="_meta_casier" value="reservations_mailsubscribers" />
+			<p class="boutons">
+				<span class="image_loading">&nbsp;</span>
+				<input type="submit" class="submit" value="<:bouton_enregistrer:>" />
+			</p>
+		</div>
 	</form>
 </div>
