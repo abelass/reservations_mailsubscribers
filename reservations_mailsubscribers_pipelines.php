@@ -45,7 +45,6 @@ function reservations_mailsubscribers_formulaire_charger($flux) {
 		}
 
 		//Les hidden listes
-
 		$listes_caches = array();
 		foreach ($config_listes_caches AS $liste) {
 			if ($config[$liste . '_lang'] == '' OR $config[$liste . '_lang'] == $lang) {
