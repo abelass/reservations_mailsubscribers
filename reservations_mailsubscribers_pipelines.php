@@ -48,18 +48,15 @@ function reservations_mailsubscribers_formulaire_charger($flux) {
 
 		$listes_caches = array();
 		foreach ($config_listes_caches AS $liste) {
-
 			if ($config[$liste . '_lang'] == '' OR $config[$liste . '_lang'] == $lang) {
 				$listes_caches[] = $liste;
 			}
-
 		}
-		$listes_caches = implode(',', $listes_caches);
 
-		$flux['data']['listes_caches'] = $listes_caches;
-
-		$flux['data']['_hidden'] .= "<input type='hidden' name='listes_caches' value='$listes_caches' />";
-
+		if ($listes_caches = implode(',', $listes_caches)) {
+			$flux['data']['listes_caches'] = $listes_caches;
+			$flux['data']['_hidden'] .= "<input type='hidden' name='listes_caches' value='$listes_caches' />";
+		}
 	}
 	return $flux;
 }
