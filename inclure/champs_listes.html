@@ -1,11 +1,11 @@
 [(#ENV{mailinglists_visibles}|count|>{0}|oui)
- <ul class="liste mailing_lists">
- 	<li>
-		<fieldset>
-			<legend><:mailsubscriber:subscribe_titre_email:></legend>
-	        <ul>
-	        	[(#SAISIE{checkbox, listes,label=<:reservations_mailsubscribers:inscription_newsletters:>,datas=#ENV{mailinglists_visibles}})]
-	        </ul>
-		</fieldset>
-	</li>
-</ul>]
+<div class="fieldset fieldset_fieldset_parametres saisie_fieldset">
+	<fieldset>
+		<legend><:mailsubscriber:subscribe_titre_email:></legend>
+			<div class="editer-groupe">
+				[(#SAISIE{checkbox,listes,
+				label=<:reservations_mailsubscribers:inscription_newsletters:>,
+				datas=#ENV{mailinglists_visibles}})]
+			</div>
+	</fieldset>
+</div>]
